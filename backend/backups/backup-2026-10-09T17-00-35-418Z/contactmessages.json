@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "6ac779282270afdc77216160",
+    "name": "harshith",
+    "email": "harshith1@gmail.com",
+    "subject": "General Inquiry",
+    "message": "good products and great quality",
+    "status": "New",
+    "adminNotes": "",
+    "createdAt": "2026-10-08T11:06:16.102Z",
+    "updatedAt": "2026-10-08T11:06:16.102Z",
+    "__v": 0
+  }
+]

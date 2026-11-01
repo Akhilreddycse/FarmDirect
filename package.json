@@ -1,0 +1,24 @@
+{
+  "name": "farmdirect-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FarmDirect - Farmer to Consumer Direct Marketplace Fullstack Project",
+  "scripts": {
+    "start": "npm run dev",
+    "predev": "node scripts/cleanPort.js",
+    "dev": "concurrently --restart-tries 3 --restart-after 2000 --prefix-colors \"bgGreen.bold,bgBlue.bold\" --names \"BACKEND,FRONTEND\" \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "backup": "node backend/scripts/backupDb.js",
+    "restore": "node backend/scripts/restoreDb.js",
+    "seed": "npm --prefix backend run seed",
+    "test:backend": "npm --prefix backend test",
+    "build": "npm --prefix frontend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "start:prod": "npm --prefix backend start"
+  },
+  "keywords": ["farmdirect", "ecommerce", "agriculture", "marketplace"],
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}

@@ -1,0 +1,109 @@
+[
+  {
+    "_id": "6ac679edba966e9de6268feb",
+    "user": "6ac679edba966e9de6268fe9",
+    "farmName": "Verma Bio-Dynamic Organic Acres",
+    "bio": "3rd generation organic farmer specializing in heirloom tomatoes, exotic vegetables, and cold-pressed mustard oil.",
+    "experienceYears": 18,
+    "farmSizeAcres": 12,
+    "farmingMethods": [
+      "Organic",
+      "Natural / Vedic"
+    ],
+    "location": {
+      "village": "Khed Shivapur",
+      "district": "Pune",
+      "state": "Maharashtra",
+      "pincode": "412205"
+    },
+    "isApproved": true,
+    "ratingAverage": 4.9,
+    "ratingCount": 42,
+    "totalSalesAmount": 185000,
+    "completedOrdersCount": 54,
+    "coverImage": "",
+    "createdAt": "2026-10-07T16:57:17.287Z",
+    "updatedAt": "2026-10-07T16:57:17.287Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac679edba966e9de6268fef",
+    "user": "6ac679edba966e9de6268fed",
+    "farmName": "Himalayan Foothill Orchards",
+    "bio": "Cultivating crisp high-altitude apples, walnuts, and wild forest honey in pristine soil.",
+    "experienceYears": 14,
+    "farmSizeAcres": 8,
+    "farmingMethods": [
+      "Organic",
+      "Regenerative"
+    ],
+    "location": {
+      "village": "Kotgarh",
+      "district": "Shimla",
+      "state": "Himachal Pradesh",
+      "pincode": "171201"
+    },
+    "isApproved": true,
+    "ratingAverage": 4.8,
+    "ratingCount": 38,
+    "totalSalesAmount": 210180,
+    "completedOrdersCount": 62,
+    "coverImage": "",
+    "createdAt": "2026-10-07T16:57:17.400Z",
+    "updatedAt": "2026-10-08T10:06:56.578Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac679edba966e9de6268ff3",
+    "user": "6ac679edba966e9de6268ff1",
+    "farmName": "Vedic Green Harvest Women's Co-op",
+    "bio": "Leading a cooperative of 25 women farmers producing ancient millets, stone-ground whole spices, and native unpolished lentils.",
+    "experienceYears": 9,
+    "farmSizeAcres": 15,
+    "farmingMethods": [
+      "Zero Budget Natural Farming (ZBNF)",
+      "Organic"
+    ],
+    "location": {
+      "village": "Mandya Rural",
+      "district": "Mandya",
+      "state": "Karnataka",
+      "pincode": "571401"
+    },
+    "isApproved": true,
+    "ratingAverage": 5,
+    "ratingCount": 56,
+    "totalSalesAmount": 142000,
+    "completedOrdersCount": 48,
+    "coverImage": "",
+    "createdAt": "2026-10-07T16:57:17.533Z",
+    "updatedAt": "2026-10-07T16:57:17.533Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac67b2dba966e9de6269051",
+    "user": "6ac67b2dba966e9de626904f",
+    "farmName": "varadhi farms",
+    "bio": "Dedicated to organic and sustainable agriculture.",
+    "experienceYears": 5,
+    "farmSizeAcres": 5,
+    "farmingMethods": [
+      "Organic"
+    ],
+    "location": {
+      "village": "Krishnankoil",
+      "district": "madurai",
+      "state": "Tamil Nadu",
+      "pincode": "626126"
+    },
+    "isApproved": true,
+    "ratingAverage": 4.8,
+    "ratingCount": 0,
+    "totalSalesAmount": 1490,
+    "completedOrdersCount": 4,
+    "coverImage": "",
+    "createdAt": "2026-10-07T17:02:37.960Z",
+    "updatedAt": "2026-10-08T17:52:39.794Z",
+    "__v": 0
+  }
+]

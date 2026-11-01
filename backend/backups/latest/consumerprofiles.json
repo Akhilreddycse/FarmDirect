@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "6ac679edba966e9de6268ff7",
+    "user": "6ac679edba966e9de6268ff5",
+    "preferences": {
+      "organicOnly": true,
+      "preferredCategories": [
+        "Fresh Vegetables",
+        "Organic Fruits"
+      ]
+    },
+    "walletBalance": 0,
+    "createdAt": "2026-10-07T16:57:17.646Z",
+    "updatedAt": "2026-10-07T16:57:17.646Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac679edba966e9de6268ffb",
+    "user": "6ac679edba966e9de6268ff9",
+    "preferences": {
+      "organicOnly": false,
+      "preferredCategories": [
+        "Grains & Rice",
+        "Pure Honey & Jaggery"
+      ]
+    },
+    "walletBalance": 0,
+    "createdAt": "2026-10-07T16:57:17.748Z",
+    "updatedAt": "2026-10-07T16:57:17.748Z",
+    "__v": 0
+  },
+  {
+    "_id": "6ac67b95ba966e9de6269077",
+    "user": "6ac67b95ba966e9de6269075",
+    "preferences": {
+      "organicOnly": false,
+      "preferredCategories": []
+    },
+    "walletBalance": 0,
+    "createdAt": "2026-10-07T17:04:21.947Z",
+    "updatedAt": "2026-10-07T17:05:03.508Z",
+    "__v": 0,
+    "defaultAddress": "6ac67bbfba966e9de62690f9"
+  },
+  {
+    "_id": "6ac76d1a27b054593754d7ef",
+    "user": "6ac76d1a27b054593754d7ed",
+    "preferences": {
+      "organicOnly": false,
+      "preferredCategories": []
+    },
+    "walletBalance": 0,
+    "createdAt": "2026-10-08T10:14:50.537Z",
+    "updatedAt": "2026-10-08T17:52:37.168Z",
+    "__v": 0,
+    "defaultAddress": "6ac7d865ffa68776e975dc7f"
+  }
+]
