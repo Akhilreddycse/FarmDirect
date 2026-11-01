@@ -84,6 +84,13 @@ const Navbar = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    setUserDropdownOpen(false);
+    setMobileMenuOpen(false);
+    navigate('/login');
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200/80 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -331,7 +338,7 @@ const Navbar = () => {
                       )}
 
                       <button
-                        onClick={logout}
+                        onClick={handleLogout}
                         className="w-full text-left flex items-center gap-2.5 px-4 py-2.5 text-rose-600 hover:bg-rose-50 border-t border-stone-100 mt-1"
                       >
                         <LogOut className="w-4 h-4" />
@@ -393,7 +400,17 @@ const Navbar = () => {
             <Link to="/contact" className="py-2 border-b border-stone-100">
               Contact & Support
             </Link>
-            {!isAuthenticated && (
+            {isAuthenticated ? (
+              <div className="flex flex-col gap-2 pt-2">
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-center py-2.5 rounded-xl border border-rose-200 text-rose-600 font-bold hover:bg-rose-50 flex items-center justify-center gap-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out ({user?.name})
+                </button>
+              </div>
+            ) : (
               <div className="flex flex-col gap-2 pt-2">
                 <Link
                   to="/login"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard,
   Package,
@@ -12,11 +12,13 @@ import {
   FolderTree,
   FileText,
   Home,
+  LogOut,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const Sidebar = () => {
-  const { user, isFarmer, isAdmin } = useAuth();
+  const { user, isFarmer, isAdmin, logout } = useAuth();
+  const navigate = useNavigate();
 
   const farmerLinks = [
     { name: 'Dashboard', path: '/farmer/dashboard', icon: LayoutDashboard },
@@ -71,7 +73,7 @@ const Sidebar = () => {
         </nav>
       </div>
 
-      <div className="pt-4 border-t border-stone-100">
+      <div className="pt-4 border-t border-stone-100 space-y-1">
         <NavLink
           to="/marketplace"
           className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-stone-500 hover:text-forest-700 hover:bg-forest-50 transition"
@@ -79,6 +81,16 @@ const Sidebar = () => {
           <Home className="w-4 h-4" />
           Back to Marketplace
         </NavLink>
+        <button
+          onClick={() => {
+            logout();
+            navigate('/login');
+          }}
+          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium text-rose-600 hover:bg-rose-50 transition text-left"
+        >
+          <LogOut className="w-4 h-4" />
+          Sign Out
+        </button>
       </div>
     </aside>
   );
