@@ -5,9 +5,16 @@ import { useToast } from './ToastContext';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    try {
+      const savedUser = localStorage.getItem('farmdirect_user');
+      return savedUser ? JSON.parse(savedUser) : null;
+    } catch (_) {
+      return null;
+    }
+  });
   const [token, setToken] = useState(localStorage.getItem('farmdirect_token'));
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!localStorage.getItem('farmdirect_token') ? false : true);
   const { addToast } = useToast();
 
   const loadUser = async () => {
@@ -22,12 +29,15 @@ export const AuthProvider = ({ children }) => {
       const res = await api.get('/auth/me');
       if (res.data.success) {
         setUser(res.data.user);
+        localStorage.setItem('farmdirect_user', JSON.stringify(res.data.user));
       }
     } catch (err) {
       console.error('Failed to load user profile', err);
-      localStorage.removeItem('farmdirect_token');
-      localStorage.removeItem('farmdirect_user');
-      setUser(null);
+      if (err.response?.status === 401) {
+        localStorage.removeItem('farmdirect_token');
+        localStorage.removeItem('farmdirect_user');
+        setUser(null);
+      }
     } finally {
       setLoading(false);
     }
