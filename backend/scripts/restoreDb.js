@@ -13,19 +13,26 @@ async function runRestore() {
   console.log('🔄 Starting Safe FarmDirect Database Restore from latest backup...');
 
   let connected = false;
-  try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/test', { serverSelectionTimeoutMS: 2000 });
+  if (process.env.MONGO_URI) {
+    const { connectDB } = require('../config/db');
+    await connectDB();
     connected = true;
-    console.log('✅ Connected to active MongoDB instance on port 27017.');
-  } catch (err) {
+    console.log('✅ Connected to MongoDB via configured MONGO_URI.');
+  } else {
     try {
-      console.log('ℹ️ Active MongoDB not detected, connecting via internal storage...');
-      const { connectDB } = require('../config/db');
-      await connectDB();
+      await mongoose.connect('mongodb://127.0.0.1:27017/test', { serverSelectionTimeoutMS: 2000 });
       connected = true;
-    } catch (innerErr) {
-      console.error('❌ Failed to connect to database for restore:', innerErr.message);
-      process.exit(1);
+      console.log('✅ Connected to active MongoDB instance on port 27017.');
+    } catch (err) {
+      try {
+        console.log('ℹ️ Active MongoDB not detected, connecting via internal storage...');
+        const { connectDB } = require('../config/db');
+        await connectDB();
+        connected = true;
+      } catch (innerErr) {
+        console.error('❌ Failed to connect to database for restore:', innerErr.message);
+        process.exit(1);
+      }
     }
   }
 

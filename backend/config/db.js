@@ -10,7 +10,18 @@ const connectDB = async () => {
     const mongoUri = process.env.MONGO_URI;
 
     if (mongoUri && mongoUri.trim() !== '') {
-      const conn = await mongoose.connect(mongoUri);
+      let conn;
+      try {
+        conn = await mongoose.connect(mongoUri);
+      } catch (err) {
+        if (err.message && err.message.includes('querySrv')) {
+          const dns = require('dns');
+          dns.setServers(['8.8.8.8', '1.1.1.1']);
+          conn = await mongoose.connect(mongoUri);
+        } else {
+          throw err;
+        }
+      }
       console.log(`[Database] MongoDB Connected to external instance: ${conn.connection.host}`);
       return conn;
     }
