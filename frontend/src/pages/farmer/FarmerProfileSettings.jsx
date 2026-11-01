@@ -39,8 +39,8 @@ const FarmerProfileSettings = () => {
         if (res.data.success) {
           const p = res.data.profile;
           setFormData({
-            name: user?.name || '',
-            phone: user?.phone || '',
+            name: p.user?.name || user?.name || '',
+            phone: p.user?.phone || user?.phone || '',
             farmName: p.farmName || '',
             bio: p.bio || '',
             experienceYears: p.experienceYears || 5,
@@ -50,6 +50,9 @@ const FarmerProfileSettings = () => {
             state: p.location?.state || '',
             pincode: p.location?.pincode || '',
           });
+          if (p.user?.avatar) {
+            setAvatarPreview(p.user.avatar);
+          }
         }
       } catch (err) {
         console.error(err);
@@ -59,7 +62,7 @@ const FarmerProfileSettings = () => {
     };
 
     fetchProfile();
-  }, [user]);
+  }, []);
 
   const handleAvatarChange = (e) => {
     const file = e.target.files && e.target.files[0];
@@ -73,36 +76,53 @@ const FarmerProfileSettings = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const submitData = new FormData();
-      submitData.append('name', formData.name);
-      submitData.append('phone', formData.phone);
-      submitData.append('farmName', formData.farmName);
-      submitData.append('bio', formData.bio);
-      submitData.append('experienceYears', Number(formData.experienceYears));
-      (formData.farmingMethods || []).forEach((m) => {
-        submitData.append('farmingMethods', m);
-      });
-      submitData.append(
-        'location',
-        JSON.stringify({
-          village: formData.village,
-          district: formData.district,
-          state: formData.state,
-          pincode: formData.pincode,
-        })
-      );
+      let res;
       if (avatarFile) {
+        const submitData = new FormData();
+        submitData.append('name', formData.name);
+        submitData.append('phone', formData.phone);
+        submitData.append('farmName', formData.farmName);
+        submitData.append('bio', formData.bio);
+        submitData.append('experienceYears', Number(formData.experienceYears));
+        (formData.farmingMethods || []).forEach((m) => {
+          submitData.append('farmingMethods', m);
+        });
+        submitData.append(
+          'location',
+          JSON.stringify({
+            village: formData.village,
+            district: formData.district,
+            state: formData.state,
+            pincode: formData.pincode,
+          })
+        );
         submitData.append('avatar', avatarFile);
+
+        // Do not pass manual Content-Type so Axios/browser creates boundary properly
+        res = await api.put('/auth/profile', submitData);
+      } else {
+        // Instant JSON update when no image file is being uploaded
+        res = await api.put('/auth/profile', {
+          name: formData.name,
+          phone: formData.phone,
+          farmName: formData.farmName,
+          bio: formData.bio,
+          experienceYears: Number(formData.experienceYears),
+          farmingMethods: formData.farmingMethods,
+          location: {
+            village: formData.village,
+            district: formData.district,
+            state: formData.state,
+            pincode: formData.pincode,
+          },
+        });
       }
 
-      const res = await api.put('/auth/profile', submitData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
       if (res.data.success) {
-        addToast('Farm profile and photo updated successfully!', 'success');
+        addToast('Farm profile updated successfully!', 'success');
+        if (res.data.user?.avatar) {
+          setAvatarPreview(res.data.user.avatar);
+        }
         await reloadUser();
       }
     } catch (err) {
